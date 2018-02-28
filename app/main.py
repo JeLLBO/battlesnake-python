@@ -27,11 +27,14 @@ def start():
     )
 
     # TODO: Do things with data
+    global count
+    count = 0
 
     return {
         'color': '#00FF00',
         'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
-        'head_url': head_url
+        'head_url': head_url,
+        'name': 'battlesnake-python'
     }
 
 
@@ -41,13 +44,22 @@ def move():
 
     # TODO: Do things with data
     
-    directions = ['up', 'down', 'left', 'right']
-    direction = random.choice(directions)
+    directions = ['up', 'right', 'down', 'left']
+    direction = directions[count]
     print direction
+
+    counter()
+
     return {
         'move': direction,
-        'taunt': 'battlesnake-python!'
+        'taunt': 'henlo snekz!'
     }
+
+def counter():
+    global count
+    count += 1
+    if (count == 4):
+        count = 0
 
 
 # Expose WSGI app (so gunicorn can find it)
